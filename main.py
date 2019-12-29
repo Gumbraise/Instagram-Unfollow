@@ -11,12 +11,8 @@ api.login()
 following = api.getSelfUsersFollowing()
 
 for item in following["users"]:
-    user = item["username"]
+    user = item["pk"]
+    username = item["username"]
 
-    url = "https://www.instagram.com/web/search/topsearch/?context=blended&query="+user+"&rank_token=0.3953592318270893&count=1"
-    response = requests.get(url)
-    respJSON = response.json()
-    user_id = str( respJSON['users'][0].get("user").get("pk") )
-
-    api.unfollow(user_id)
-    print(user + " is now unfollowed")
+    api.unfollow(user)
+    print(username + " is now unfollowed")
